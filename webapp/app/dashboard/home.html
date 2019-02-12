@@ -1,0 +1,62 @@
+<link href="dashboard/home.css" rel="stylesheet" type="text/css"/>
+<script> 
+	$('.dropdown-toggle').dropdown()
+</script>   
+<div class = "container" style = "background-color:#000000; height:753px;; width:100%;">
+    <div class="navbar-wrapper">
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+            <a class="brand" href="/#!/index">AttendU</a>
+              <ul class="nav">
+                <li class="active"><a href="/#!/home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+              <form class="navbar-form pull-left">
+          <input type="text" class="span2" ng-model="vm.searchID">
+          <button type="submit" class="btn" ng-click="vm.search()">Search rooms</button>
+        </form>
+
+              <p class = "navbar-text pull-right" style = "font-size:15px" font color = "#FFFFFF">
+                <a ng-click="vm.Logout()" style = "color:#FFFFFF; cursor: pointer;">{{vm.showName||"Log in or Sign up"}}</a>
+              </font></p>
+
+          </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+    </div>
+
+<!-- NAVBAR ===================================================================== -->
+
+
+
+<!-- part 1 Home ===================================================================== -->	
+	<div class = "part1" data-ng-init="vm.onloadFun()">
+		<div class = "nv1" style = "width:76%;">
+			<ul class="breadcrumb" style = "background-color:#17202A;">
+          <span ng-show="vm.userLoaded">
+  				<div ui-view></div>
+          </span>
+			</ul>
+		</div>
+    </div>	
+		<!-- picture 1s -->
+	
+<!-- SIDEBAR ===================================================================== -->
+	<div class = "sidebar">
+		<ul class="nav nav-list" style = "background-color:#1B2631;height:100%;">
+  			<li class="nav-header"><font color = "#85929E"; size = "4px;">Menu</font></li>
+  			<hr style = "background-color:#85929E;height:1px;border:none;"></hr>
+  			<li class="active"><font color = "#85929E" size = "4px"><a href="#/home" style = "color:#85929E"><b>Home</b></a></font></li>
+
+  			<hr style = "background-color:#85929E;height:1px;border:none;"></hr>
+        <li><font size = "4px;color:" color = "#85929E"> <a ui-sref="home.room"  style = "color:#85929E"><b>Rooms</b></a></font></li>
+  			
+  			<hr style = "background-color:#85929E;height:1px;border:none;"></hr></li>
+  			<li><font size = "4px;"><a ui-sref="home.dataRoom"  style = "color:#85929E"><b>Data</b></a></font></li>
+  			
+		</ul>
+	</div>
+	
+</div>
+
+

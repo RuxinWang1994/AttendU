@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="attendU">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="bootstrap.css" />
+<link href="index.css" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link rel="stylesheet" href="angular-flash.css" />
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+<head>
+<meta charset="UTF-8">
+<title>AttendU</title>
+</head>
+
+
+
+<body>
+<!-- NAVBAR ===================================================================== -->
+<div class = "container" style = "background-color:#FFFFFF; height:100%; width: 100%">
+	<div ui-view></div>
+</div>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="bootstrap.js"></script>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="angular-flash.js"></script>
+<script src="bower_components/chart.js/dist/Chart.min.js"></script>
+<script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+
+<script src="app.module.js"></script>
+<script src="app.config.js"></script>
+
+    
+
+	<script src="service/flash.service.js"></script>
+	<script src="service/user.service.js"></script>
+	<script src="service/authentication.service.js"></script>
+  <script src="service/room.service.js"></script> 
+  <script src="service/state.service.js"></script>
+  <script src="service/room.service.js"></script>
+  <script src="service/activity.service.js"></script>
+  <script src="service/checkin.service.js"></script>
+	<script src="login/login.controller.js"></script>
+	<script src="login/register.controller.js"></script>
+  <script src="dashboard/home.controller.js"></script>
+  <script src="dashboard/index.controller.js"></script>
+    <script src="dashboard/dashboard.controller.js"></script>
+  <script src="room/roomlist.controller.js"></script>
+  <script src="activity/activity.controller.js"></script>
+  <script src="data/data.controller.js"></script>
+  
+</body>
+</html>

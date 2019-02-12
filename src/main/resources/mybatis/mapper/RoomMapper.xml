@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.attendU.dev.microservices.room.RoomMapper">
+
+	 <select id="getCreatedRID" resultType="long">
+    	select LAST_INSERT_ID()
+     </select>
+
+     <select id="getRoomById" resultType="com.attendU.dev.microservices.bean.Room">
+    	select * from Rooms where rid = #{rid}
+     </select>
+
+     <select id="getRoombyName" resultType="com.attendU.dev.microservices.bean.Room">
+		select * from rooms where name like '%#{name}%'
+	</select>
+
+	<select id="getRoomByUid" resultType="com.attendU.dev.microservices.bean.Room" flushCache="true">
+      select * from rooms where rooms.rid in (
+         select a.rid from admin a left outer join participation_room b
+               on a.rid = b.rid where a.uid = #{uid}
+               union
+         select b.rid from rooms a right outer join participation_room b
+               on a.rid = b.rid where b.uid = #{uid})
+     </select>
+
+     <select id="getRoomByAdmin" resultType="com.attendU.dev.microservices.bean.Room" flushCache="true">
+     	select * from rooms a natural join admin b where uid = #{adminId}
+     </select>
+
+     <select id="searchRoom" resultType="com.attendU.dev.microservices.bean.Room">
+      select * from rooms where rid = #{rid}
+     </select>
+
+     <insert id="createRoom" parameterType="com.attendU.dev.microservices.bean.Room">
+        insert into rooms (name, participationNum, rcid)
+        values (#{name},#{participationNum},#{rcid})
+     </insert>
+
+     <delete id="removeRoom">
+        delete from rooms where rid = #{rid}
+     </delete>
+
+	 <update id="updateRoom" >
+        update rooms set
+        name = #{name}, participationNum = #{participationNum}, description = #{description}
+        where rid = #{rid}
+    </update>
+
+    <insert id="updateParticipation">
+    	insert into participation_room (uid, rid)
+    	values (#{uid}, #{rid})
+    </insert>
+
+    <insert id="updateAdmin">
+    	insert into admin (uid, rid)
+    	values (#{uid}, #{rid})
+    </insert>
+
+    <delete id="quitRoom">
+    	delete from participation_room where rid = #{rid} and uid = #{uid}
+    </delete>
+
+    <select id="getActivityByRid" resultType="long">
+    	select aid from ra_link where rid=#{rid};
+    </select>
+
+    <delete id="removeActivities">
+    	delete from activities where aid in
+    	<foreach item="aid" index="index" collection="list" open="(" separator="," close=")">
+    	#{aid}
+    	</foreach>
+    </delete>
+
+    <delete id="removeRoomLinking">
+    	delete from admin where rid=#{rid};delete from participation_activity where rid=#{rid};delete from participation_room where rid=#{rid};delete from ra_link where rid=#{rid};
+    </delete>
+
+
+
+</mapper>

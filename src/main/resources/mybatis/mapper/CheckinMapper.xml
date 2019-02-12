@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.attendU.dev.microservices.checkin.CheckinMapper">
+
+  <update id="checkin" parameterType="com.attendU.dev.microservices.bean.Checkin">
+      update participation_activity set Attendance = 1, createTime=#{createTime}
+	    where rid=#{rid} and aid=#{aid} and uid=#{uid}
+  </update>
+
+  <update id="absent" parameterType="com.attendU.dev.microservices.bean.Checkin">
+      update participation_activity set
+      Attendance = 2, absentReason = #{reason}, createTime=#{createTime}
+      where uid = #{uid} and rid = #{rid} and aid = #{aid}
+  </update>
+
+  <select id="getCheckinInfo" resultType="com.attendU.dev.microservices.bean.Checkin">
+      select * from participation_activity
+      where uid=#{uid} and rid=#{rid} and aid=#{aid}
+  </select>
+
+  <select id="getCheckinByRoom" resultType="com.attendU.dev.microservices.bean.Checkin">
+      select * from participation_activity
+      where uid=#{uid} and rid=#{rid}
+  </select>
+
+  <select id="getDue" resultType="Date">
+      select due from activities
+      where aid=#{aid}
+  </select>
+</mapper>

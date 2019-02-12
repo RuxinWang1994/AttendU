@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.attendU.dev.microservices.activity.ActivityMapper">
+
+  <select id="getCreatedAID" resultType="int">
+    	select LAST_INSERT_ID()
+  </select>
+
+  <select id="getActivityById" resultType="com.attendU.dev.microservices.bean.Activity">
+		select * from activities where aid= #{aid}
+  </select>
+
+  <select id="getActivitybyName" resultType="com.attendU.dev.microservices.bean.Activity">
+		select * from activities where name like '%#{name}%'
+  </select>
+
+  <select id="getActivityByRoom" resultType="com.attendU.dev.microservices.bean.Activity" flushCache="true">
+
+      select * from ra_link natural join activities
+      where rid = #{rid} and #{date}=#{date};
+  </select>
+
+  <insert id="createActivity" parameterType="com.attendU.dev.microservices.bean.Activity">
+		insert into activities (Name, Date, acid,description,participationNum,due)
+		values (#{Name}, #{Date}, #{acid}, #{description},#{participationNum},#{due})
+  </insert>
+
+
+  <delete id="removeActivity">
+        delete from activities where aid = #{aid};
+        delete from ra_link where aid = #{aid};
+        delete from participation_activity where aid=#{aid};
+  </delete>
+
+  <update id="updateActivity" parameterType="com.attendU.dev.microservices.bean.Activity">
+        update activities set
+        name = #{Name}, Date = #{date}, acid = #{acid}, description=#{description},due=#{due}
+        where aid = #{aid}
+  </update>
+
+  <update id="startActivity">
+        update activities set
+        started = 1
+        where aid = #{aid} and started = 0
+  </update>
+
+  <update id="endActivity">
+        update activities set
+        started = 0
+        where aid = #{aid} and started = 1
+  </update>
+
+	<insert id="updateParticipation_activity">
+		insert into participation_activity (uid, rid, aid)
+		values (#{uid}, #{rid}, #{aid});
+	</insert>
+
+	<insert id="fixPartRoom">
+		insert into participation_room (uid, rid)
+    	      values (#{uid}, #{rid});
+   	</insert>
+
+   	<select id="checkPartRoom" resultType="int">
+   		select count(*) from participation_room where uid=#{uid} and rid=#{rid}
+   	</select>
+
+  <delete id="removeParticipation_activity">
+		delete from participation_activity where
+		uid=#{uid} and rid=#{rid} and aid=#{aid};
+
+            delete from participation_room where
+    	      uid=#{uid} and rid=#{rid};
+  </delete>
+
+	<insert id="updateRALink">
+	   insert into ra_link (rid, aid)
+	   values(#{rid},#{aid})
+	</insert>
+
+	<select id="getRoombyAid" resultType="com.attendU.dev.microservices.bean.Room">
+		select * from rooms right join ra_link on rooms.rid=ra_link.rid where aid=#{aid}
+	</select>
+
+	<select id="getRoombyRid" resultType="com.attendU.dev.microservices.bean.Room">
+		select * from rooms where rid=#{rid}
+	</select>
+
+	<select id="isAdmin" resultType="boolean">
+		SELECT EXISTS(select * from admin where rid=#{rid} and uid=#{uid})
+	</select>
+
+	<select id="getParticipationByRoom" resultType="com.attendU.dev.microservices.bean.Participation" flushCache="true">
+		select * from participation_activity where rid=#{rid} and uid=#{uid}
+	</select>
+
+	<select id="getRecent" resultType="com.attendU.dev.microservices.bean.Activity" flushCache="true">
+		select * from participation_activity natural join activities where participation_activity.uid=#{uid} order by due ASC
+	</select>
+
+	<select id="getAdminRecent" resultType="com.attendU.dev.microservices.bean.Activity" flushCache="true">
+		(select * from (select rid from admin natural join ra_link where admin.uid=12) as INSIDE
+		natural join participation_activity natural join activities where participation_activity.uid=#{uid} order by due ASC)
+		union
+		(select * from participation_activity natural join activities where participation_activity.uid=#{uid} order by due ASC)
+	</select>
+
+	<select id="getActivityParticipation" resultType="com.attendU.dev.microservices.bean.Participation" flushCache="true">
+		select * from participation_activity where aid=#{aid}
+	</select>
+</mapper>

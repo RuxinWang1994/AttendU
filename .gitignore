@@ -1,0 +1,68 @@
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+package-lock.json
+
+### Front ###
+/webapp/logs/*
+/webapp/node_modules/
+/webapp/tmp
+/webapp/app/bower_components/
+
+
+### project ###
+#/src/main/resources/mybatis/mybatis-config.xml
+/bin/*
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### eclipse ###
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# compiled output
+/webapp/dist
+/webapp/tmp
+/webapp/out-tsc
+
+# dependencies
+/webapp/node_modules
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# misc
+/webapp/.sass-cache
+/webapp/connect.lock
+/webapp/coverage
+/webapp/libpeerconnection.log
+/webapp/npm-debug.log
+/webapp/yarn-error.log
+/webapp/testem.log
+/webapp/typings

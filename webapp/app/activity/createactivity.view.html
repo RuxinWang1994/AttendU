@@ -1,0 +1,39 @@
+<div class="createactivity">
+    <h2 style = "color:#FFFFFF;">Create Activity</h2>
+    <form name="form" ng-submit="vm.register()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+            <label for="activityname" style = "color:#FFFFFF;">Activity name</label>
+            <input type="text" name="name" id="name" class="form-control" ng-model="vm.newActivity.name" required />
+            <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Activity name is required</span>
+        </div>
+		
+		
+		
+		<div class="form-group">
+            <label for="activityname" style = "color:#FFFFFF;">Start time</label>
+            <input type="datetime-local" name="date" id="date" class="form-control" ng-model="vm.newActivity.date" />
+        </div>
+
+        <div class="form-group">
+            <label for="activityname" style = "color:#FFFFFF;">Due time</label>
+            <input type="datetime-local" name="date" id="date" class="form-control" ng-model="vm.newActivity.due" />
+        </div>
+
+        <div class="form-group">
+            <label for="activityname" style = "color:#FFFFFF;">Capacity</label>
+            <input type="number" name="name" id="name" class="form-control" ng-model="vm.newActivity.participationNum"/>
+        </div>
+        
+        
+        <div class = "form-group testarea">
+        	<h4 style = "color:#FFFFFF;"><label for="roomDescription" style="cursor: default;">Activity description</label></h4>
+			<textarea rows="7" name = "activityDescription" id = "activityDescription" style = "width:700px" ng-model="vm.newActivity.description"></textarea>
+		</div>
+        
+        <div class="createacvivity">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" style = "color:#FFFFFF;">Complete</button>
+            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a ui-sref="home.activity({enterRID:vm.room.rid})" class="">Cancel</a>
+        </div>
+    </form>
+</div>

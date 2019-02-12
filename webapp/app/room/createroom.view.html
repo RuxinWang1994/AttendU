@@ -1,0 +1,28 @@
+<div class="createroom">
+    <h2 style = "color:#FFFFFF;">Create Room</h2>
+    <form name="form" ng-submit="vm.register()" role="form" >
+        <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+            <label for="roomname" style = "color:#FFFFFF;">Room name</label>
+            <input type="text" name="name" id="name" class="form-control" ng-model="vm.newRoom.name" required />
+            <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Room name is required</span>
+        </div>
+		
+		<div class="form-group" ng-class="{ 'has-error': form.cell.$dirty}">
+            <label for="roomname" style = "color:#FFFFFF;">Participation Number</label>
+            <input type="text" name="participation" id="participation" class="form-control" ng-model="vm.newRoom.participationNum" />
+            <span ng-show="form.cell.$dirty && form.cell.$error.required" class="help-block"></span>
+        </div>
+        
+        <div class = "testarea">
+        	<h4 style = "color:#FFFFFF;"><label for="roomDescription" style="cursor: default;">Room description</label></h4>
+			<textarea rows="7" name = "roomDescription" id = "roomDescription" style = "width:700px" ng-model="vm.newRoom.description"></textarea>
+		</div>
+        
+        <br/>
+        <div class="createroomform">
+            <button type="submit" ng-disabled="form.$invalid || vm.createLoading" class="btn btn-primary">Complete</button>
+            <img ng-if="vm.createLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#/home/room" class="">Cancel</a>
+        </div>
+    </form>
+</div>

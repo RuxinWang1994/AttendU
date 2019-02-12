@@ -1,0 +1,54 @@
+ <div class="roomconfig" style = "width:100%" data-ng-init="vm.showConfig()">
+    <h3 style = "color:#FFFFFF;">Room/Activity Setting</h3>
+    <!--<ul class="nav nav-pills">
+  		<li class="active">
+    		<a ui-sref="home.configRoom">Room Setting</a>
+  		</li>
+  		<li><a ui-sref="home.activity({enterRID:vm.editRoom.rid})">Activity Setting</a></li>
+	</ul>-->
+    <form name="form" ng-submit="vm.congfigRoom()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+            <h4 style = "color:#FFFFFF;"><label for="roomname" style="cursor: default;">Room name</label></h4>
+            <input type="text" name="roomname" id="roomname" class="form-control" ng-model="vm.editRoom.name" required />
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+            <h4 style = "color:#FFFFFF;"><label for="participationnum" style="cursor: default;">Participation number</label></h4>
+            <input type="text" name="participationnum" id="participationnum" class="form-control" ng-model="vm.editRoom.participationNum" required />
+        </div>
+        <div class = "testarea">
+        	<h4 style = "color:#FFFFFF;"><label for="roomDescription" style="cursor: default;">Room description</label></h4>
+			<textarea rows="7" name = "roomDescription" id = "roomDescription" style = "width:700px" ng-model="vm.editRoom.description"></textarea>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-primary">Complete</button>
+            <a ui-sref="home.room"><button class = "btn btn-primary">Cancel</button></a>
+		</div>
+    </form>
+
+  <!--    <div class = "activitytable">
+        <table class = "table" style = "color:#FFFFFF;margin-top:10px; font-size:15px;">
+            <tr>
+                <td>Activity ID</td>
+                <td>Activity name</td>
+                <td>Number of participates</td>
+                <td>Publish</td>
+                <td>Delete</td>
+            </tr>
+            <tr ng-repeat="x in vm.room">
+                <td width=50px>{{x.aid}}</td>
+                <td width=250px><a herf="" ng-click="vm.roomChosen(x.id)">{{x.name}}</a></td>
+                <td width=100px>{{x.participationNum}}</td>
+                <td width=50px>
+                    <i class="material-icons" ng-show="x.isAdmin"><a ng-click="">toggle_on</a></i>
+                    <i class="material-icons" ng-show="x.isAdmin"><a ng-click="">toggle_off</a></i>
+                </td>
+                <td width=50px>
+                    <i class="material-icons" ng-show="x.isAdmin"><a ng-click="">delete</a></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div> 
+
+-->
+

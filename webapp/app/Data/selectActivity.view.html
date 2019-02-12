@@ -1,0 +1,81 @@
+<div class="col-md-6 col-md-offset-3" data-ng-init="vm.getData()">
+
+    <h3 style = "color:#FFFFFF;">{{vm.selectedActivity.name}}</h3>
+    
+    <!-- show room info -->
+    <div class='room_information'>
+         <span>{{vm.selectedActivity.description}}</span>
+    </div>
+
+    <br/>
+
+    <ul class="nav nav-tabs">
+        <li class="active" ng-show="vm.showTable" >
+            <a style="cursor: default;">Table</a>
+        </li>
+        <li ng-show="!vm.showTable">
+            <a ng-click="vm.goTable()" style="cursor: pointer;">Table</a>
+        </li>
+        <li ng-show="vm.showTable"><a ng-click="vm.goChart()" style="cursor: pointer;">Chart</a></li>
+        <li class="active" ng-show="!vm.showTable"><a style="cursor: default;">Chart</a></li>
+    </ul>
+    
+    <!-- show activity list -->
+    <div class="container-fluid" ng-show="vm.showTable">
+    
+    <div class = "checkedtable" ng-show="vm.datalist.checked.length>0">
+        <h4>Checked In</h4>
+        <table class = "table" style = "color:#FFFFFF;margin-top:10px; font-size:15px;">
+            <tr>
+                <td>Name</td>
+                <td>Check in Date</td>
+            </tr>
+            <tr ng-repeat="x in vm.datalist.checked">
+                <td width=50px>{{x.firstname+' '+x.lastname}}</td>
+                <td width=100px>{{x.createTime}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <br/>
+
+    
+    <div class = "absencetable" ng-show="vm.datalist.absent.length>0">
+        <h4>Abesence</h4>
+        <table class = "table" style = "color:#FFFFFF;margin-top:10px; font-size:15px;">
+            <tr>
+                <td>Name</td>
+                <td>Check in Date</td>
+            </tr>
+            <tr ng-repeat="x in vm.datalist.absent">
+                <td width=50px>{{x.firstname+' '+x.lastname}}</td>
+                <td width=100px>{{x.createTime}}</td>
+            </tr>
+        </table>
+    </div>
+
+    
+    <div class = "notable" ng-show="vm.datalist.noact.length>0">
+        <h4>No Action</h4>
+        <table class = "table" style = "color:#FFFFFF;margin-top:10px; font-size:15px;">
+            <tr>
+                <td>Name</td>
+                <td>Check in Date</td>
+            </tr>
+            <tr ng-repeat="x in vm.datalist.noact">
+                <td width=50px>{{x.firstname+' '+x.lastname}}</td>
+                <td width=100px>{{x.createTime}}</td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+    <div class="container-fluid" ng-show="!vm.showTable">
+        <h4>Overview</h4>
+        <div style="width: 800px;height: 800px">
+            <canvas id="pie" class="chart chart-pie"chart-data="vm.pie" chart-labels="vm.pieLabels" ng-if="vm.pieEnable">
+            </canvas> 
+        </div>
+        <br/>
+    </div>
+</div>

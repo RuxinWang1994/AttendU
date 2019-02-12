@@ -1,0 +1,107 @@
+﻿    <div class="navbar-wrapper">
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+            <a class="brand" href="/#!/index">AttendU</a>
+              <ul class="nav">
+                <li class="active"><a href="/#!/index">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+              <form class="navbar-form pull-left">
+                <input type="text" class="span2">
+                <button type="submit" class="btn">Search rooms</button>
+              </form>
+
+              <p class = "navbar-text pull-right" style = "font-size:15px;><font color = "#FFFFFF">
+                <a href="/#!/login" style = "color:#FFFFFF">Log in or Sign up</a></font></p>
+
+          </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+    </div><!-- /.navbar-wrapper -->
+
+
+<div class="register" style = "text-align:center; margin-top:120px; color:#000000; background-color:#FFFFFF; width:400px; height:600px; margin-left: auto; margin-right: auto;">
+    <h1>User Register</h1>
+    <form name="form" ng-submit="vm.register()" role="form" style = "margin-left:-5px; margin-top:35px;">
+    	<table height = "20px;" width = "400">  	
+        	<div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+        		<tr>
+        			<td>
+            			<label for="username"><h4>First name</h4></label>
+            			<input type="text" name="firstName" id="firstName" class="form-control" ng-model="vm.user.firstName" required />
+            			<span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
+            		</td>
+        	</div>
+        	
+			<div class="form-group" ng-class="{ 'has-error': form.middlename.$dirty}">
+				<td>
+            		<label for="username"><h4>Middle name</h4></label>
+            		<input type="text" name="middleName" id="middleName" class="form-control" ng-model="vm.user.middleName" />
+            	</td>
+           </div>
+        	
+         	<div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">	
+        		<tr>
+        			<td>
+            			<label for="username"><h4>Last name</h4></label>         	
+            			<input type="text" name="lastName" id="Text1" class="form-control" ng-model="vm.user.lastName" required />            		
+            			<span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
+            		</td>
+        	</div>
+        	
+        	<div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required && vm.availableUsername}">
+        			<td>
+            			<label for="username"><h4>Username</h4></label>
+            			<input type="text" name="username" id="username" class="form-control" ng-model="vm.user.username" required ng-blur="vm.checkNewUsername()"/>
+            		</td>
+            		<td>	
+            			<!--  <span ng-show="!vm.availableUsername" class="help-block" >Username existed</span> -->
+            		<td>
+           	   </tr>
+           
+        </div>
+        
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+        	<tr>
+        		<td>
+           	 		<label for="password"><h4>Password</h4></label>
+            		<input type="password" name="password" id="password" class="form-control" ng-model="vm.user.password" required></input>
+            		<span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+            	</td>
+        </div>
+        
+        <div class="form-group" ng-class="{ 'has-error': form.cell.$dirty}">
+        		<td>
+            		<label for="username"><h4>Mobile phone number</h4></label>
+            		<input type="text" name="cell" id="cell" class="form-control" ng-model="vm.user.cellPhone" />
+            		<span ng-show="form.cell.$dirty && form.cell.$error.required" class="help-block"></span>
+            	</td>
+            </tr>
+        </div>
+        
+		<div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+			<tr>
+				<td>
+            		<label for="username"><h4>Email</h4></label>
+            		<input type="text" name="email" id="email" class="form-control" ng-model="vm.user.emailAddress" required />
+            		<span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+            	</td>
+            </tr>
+        </div>
+        
+
+        
+        <div class="submit" style = "margin-left:-70px;">
+        	<tr>
+        		<td>
+            		<button type="submit" ng-disabled="form.$invalid || vm.dataLoading || !vm.availableUsername" class="btn btn-primary" style = "width:220px;">Register</button>
+            	</td>
+           			<img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            	<td>
+            		<a href="/#!/login"><button class = "btn"  class="btn btn-link" style = "width:220px;">Cancel</button></a>
+            	</td>
+            </tr>
+        </div>
+     </table>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+ <div class="roomconfig" style = "width:100%" data-ng-init="vm.showConfig()">
+    <h3 style = "color:#FFFFFF;">Room/Activity Setting</h3>
+    <ul class="nav nav-pills">
+  		<li><a ui-sref="home.configRoom">Room Setting</a></li>
+  		<li class="active"><a ui-sref="home.activity">Activity Setting</a></li>
+	</ul>
+    
+    <button type="button" class="btn btn-primary" ng-click="vm.goCreate()" ng-disable="vm.user==null"><a style = "color:white;">Add new activity</a></button>
+
+    <div class = "activitytable">
+        <table class = "table" style = "color:#FFFFFF;margin-top:10px; font-size:15px;">
+            <tr>
+                <td>Activity ID</td>
+                <td>Activity name</td>
+                <!--  <td>Starting Time</td> -->
+                <td>Number of participates</td>
+                <td>Configure</td>
+                <td>Enable</td>
+                <td>Delete</td>
+            </tr>
+            <tr ng-repeat="x in vm.activity">
+                <td width=50px>{{x.aid}}</td>
+                <td width=100px>{{x.name}}</td>
+                <!--  <td width=100px>{{x.date}}</td> -->
+                <td width=50px>{{x.participationNum}}</td>
+                <td width=50px>
+                    <i class="material-icons " ng-click="vm.goConfig()" style="cursor: pointer;">settings</i>
+                </td>
+                <td width=50px>
+                    <i class="material-icons md-48" ng-show="!x.started" ng-click="vm.startActivity(true, x)" style="cursor: pointer;color: #0088cc">toggle_on</i>
+                    <i class="material-icons md-48" ng-show="x.started" ng-click="vm.startActivity(false, x)" style="cursor: pointer;">toggle_off</i>
+                </td>
+                <td width=50px>
+                    <i class="material-icons" style="cursor: pointer;" ng-click="vm.removeRoom(x)">delete</i>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div> 
+
+
+

@@ -1,0 +1,51 @@
+<div class = "roomcontainer">
+    <h2 style = 'color:#FFFFFF;'>Room List</h2>
+    <div>
+        <button type="button" class="btn btn-primary" ng-click="vm.goCreate()" ng-disable="vm.user==null">Create</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.goRooms()" ng-disable="vm.user==null">All</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.goAdmittedRooms()" ng-disable="vm.user==null">Manage</button>
+    </div>
+
+    <div class = "roomtable" ng-show="!vm.showManageList">
+        <table class = "table" style = "color:#FFFFFF;margin-top:10px; font-size:15px;">
+    		<tr>
+    			<td>Room ID</td>
+    			<td>Room name</td>
+    			<td>Number of participates</td>
+    			<td>Operation</td> 
+    		</tr>
+            <tr ng-if="vm.rooms.length < 1"><td>No Room</td></tr>
+        	<tr ng-repeat="x in vm.rooms">
+            	<td width=50px>{{x.rid}}</td>
+            	<td width=250px><a herf="" ng-click="vm.roomChosen(x)">{{x.name}}</a></td>
+            	<td width=250px>{{x.participationNum}}</td>
+            	<td width=250px>
+                	<i class="material-icons" ng-show="x.isAdmin" ng-click="vm.goConfig(x)" style="cursor: pointer;" title="edit">edit</i>
+                	<i class="material-icons" ng-show="x.isAdmin" ng-click="vm.removeRoom(x)" style="cursor: pointer;" title="Remove Room">delete</i>
+                    <i class="material-icons" ng-show="!x.isAdmin" ng-click="vm.quitRoom(x)" style="cursor: pointer;" title="Quit Room">delete</i>
+                </td>
+        	</tr>
+    	</table>
+	</div>
+
+    <div class = "admittedRoomtable" ng-show="vm.showManageList">
+        <table class = "table" style = "color:#FFFFFF;margin-top:10px; font-size:15px;">
+            <tr>
+                <td>Room ID</td>
+                <td>Room name</td>
+                <td>Number of participates</td>
+                <td>Operation</td> 
+            </tr>
+            <tr ng-show="vm.admittedRooms.length < 1"><td>No Admitted Room</td></tr>
+            <tr ng-repeat="x in vm.admittedRooms">
+                <td width=50px>{{x.rid}}</td>
+                <td width=250px><a herf="" ng-click="vm.roomChosen(x)">{{x.name}}</a></td>
+                <td width=250px>{{x.participationNum}}</td>
+                <td width=250px>
+                    <i class="material-icons" ng-click="vm.goConfig(x)" style="cursor: pointer;" title="edit">edit</i>
+                    <i class="material-icons" ng-click="vm.removeRoom(x)" style="cursor: pointer;" title="Remove Room">delete</i>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

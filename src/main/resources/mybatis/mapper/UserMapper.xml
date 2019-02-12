@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.attendU.dev.microservices.user.UserMapper">
+
+	<insert id="registerUser" parameterType="com.attendU.dev.microservices.bean.User">
+		insert into users (FirstName, MiddleName, LastName, EmailAddress, UserName, Password, CellPhone)
+		values (#{FirstName}, #{MiddleName}, #{LastName}, #{EmailAddress}, #{Username}, #{Password}, #{CellPhone})
+	</insert>
+
+ 	<select id="getUsers" resultType="map">
+		select * from users
+	</select>
+
+	<select id="getUserbyId" resultType="com.attendU.dev.microservices.bean.User">
+		select * from users where uid=#{id}
+	</select>
+
+	<select id="getUserbyName" resultType="com.attendU.dev.microservices.bean.User">
+		select * from users where Username=#{username}
+	</select>
+
+	<select id="getAuth" resultType="com.attendU.dev.microservices.bean.TokenBean">
+		select * from token where uid=#{uid}
+	</select>
+
+	<insert id="insertToken" parameterType="com.attendU.dev.microservices.bean.TokenBean">
+		insert into token (uid, token, createTime, expiration)
+		values (#{uid}, #{token}, #{createTime}, #{expiration})
+	</insert>
+
+	<delete id="removeToken">
+		delete from token where uid=#{uid}
+	</delete>
+
+	<select id="getName" resultType="com.attendU.dev.microservices.bean.User">
+		select uid, FirstName, LastName from users
+		where uid in
+		<foreach item="user" index="index" collection="list" open="(" separator="," close=")">
+    		#{user}
+    	</foreach>
+    </select>
+</mapper>

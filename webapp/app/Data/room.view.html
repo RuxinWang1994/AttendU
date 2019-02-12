@@ -1,0 +1,18 @@
+<div class = "roomcontainer">
+    <h2 style = 'color:#FFFFFF;'>Room List</h2>
+    <div class = "admittedRoomtable">
+        <table class = "table" style = "color:#FFFFFF;margin-top:10px; font-size:15px;">
+            <tr>
+                <td>Room ID</td>
+                <td>Room name</td>
+                <td>Number of participates</td>
+            </tr>
+            <tr ng-show="vm.admittedRooms.length < 1"><td>No Admitted Room</td></tr>
+            <tr ng-repeat="x in vm.admittedRooms">
+                <td width=50px>{{x.rid}}</td>
+                <td width=250px><a herf="" ng-click="vm.roomChosen(x)">{{x.name}}</a></td>
+                <td width=250px>{{x.participationNum}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
